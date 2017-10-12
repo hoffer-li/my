@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>天气预报</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            width: 600px;
+            height: 300px;
+            border: 1px solid #8b8b8b;
+            margin: 50px auto;
+        }
+
+        .search {
+            text-align: center;
+        }
+
+        input {
+            border: 1px solid #5c69ff;
+            height: 20px;
+            width: 200px;
+        }
+
+        button {
+            width: 60px;
+            height: 22px;
+            border: none;
+            background: #5c69ff;
+            color: white;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        ul {
+            list-style: none;
+            float: left;
+            margin: 0 20px;
+        }
+
+        .weather ul > li {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        h1 {
+            font-size: 16px;
+            margin-top: 10px;
+            padding-left: 20px;
+            height: 30px;
+            line-height: 30px;
+            background-color: #626fff;
+        }
+
+        .weather1 {
+            background: url("images/weather/1.jpg") no-repeat;
+            background-size: 100% 100%;
+            color: white;
+        }
+
+        .weather2 {
+            background: url("images/weather/2.jpg") no-repeat;
+            background-size: 100% 100%;
+            color: white;
+        }
+
+        .weather3 {
+            background: url("images/weather/3.gif") no-repeat;
+            background-size: 100% 100%;
+            color: white;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="box">
+    <div class="search">
+        <input type="text"/>
+        <button>搜索</button>
+    </div>
+    <div class="weather">
+        <h1>城市：</h1>
+        <ul>
+            <li>实时天气</li>
+            <li>温度:</li>
+            <li>风向:</li>
+            <li>风力:</li>
+            <li>湿度:</li>
+            <li>时间:</li>
+        </ul>
+        <ul>
+            <li>今日天气</li>
+            <li>日期:</li>
+            <li>温度:</li>
+            <li>天气:</li>
+            <li>风向:</li>
+            <li>体感:</li>
+        </ul>
+        <ul>
+            <li>明日天气</li>
+            <li>日期:</li>
+            <li>星期:</li>
+            <li>温度:</li>
+            <li>天气:</li>
+            <li>风向:</li>
+        </ul>
+    </div>
+
+</div>
+
+</body>
+<script src="https://cdn.bootcss.com/jquery/1.12.3/jquery.js"></script>
+<script>
+    $(function () {
+
+//        var list=$('.weather ul');
+//        for (var i = 0; i < list.length; i++) {
+//        $('.weather ul:eq(0) li').eq(0).siblings().css({'fontSize': '12px', 'color': '#333333'});
+//        $('.weather ul:eq(1) li').eq(0).siblings().css({'fontSize': '12px', 'color': '#333333'});
+//        $('.weather ul:eq(2) li').eq(0).siblings().css({'fontSize': '12px', 'color': '#333333'});
+//        }
+
+        $('button').on('click', function () {
+
+            $('.box').removeClass('weather1');
+            $('.box').removeClass('weather2');
+            $('.box').removeClass('weather3');
+
+            var text = $('input').val();
+            $.ajax({
+                url: 'http://v.juhe.cn/weather/index',
+                data: {
+                    cityname: text,
+                    key: '2efa10f7f431e55dd70805f0e2af0e89'
+                },
+                type: 'get',
+                dataType: 'jsonp',
+                jsonp: 'callback',
+                success: function (data) {
+                    console.log(data);
+                    if (data.resultcode == 200) {
+                        var str = '';
+                        str += ' <h1>城市：' + data.result.today.city + '</h1>';
+                        str += '<ul><li>实时天气</li>';
+                        str += '<li>温度：' + data.result.sk.temp + '</li>';
+                        str += '<li>风向：' + data.result.sk.wind_direction + '</li>';
+                        str += '<li>风力：' + data.result.sk.wind_strength + '</li>';
+                        str += '<li>湿度：' + data.result.sk.humidity + '</li>';
+                        str += '<li>时间：' + data.result.sk.time + '</li></ul>';
+
+                        str += '<ul><li>今日天气</li>';
+                        str += '<li>日期：' + data.result.today.date_y + '</li>';
+                        str += '<li>温度：' + data.result.today.temperature + '</li>';
+                        str += '<li>天气：' + data.result.today.weather + '</li>';
+                        str += '<li>风向：' + data.result.today.wind + '</li>';
+                        str += '<li>体感：' + data.result.today.dressing_index + '</li></ul>';
+
+                        str += '<ul><li>明日天气</li>';
+                        str += '<li>日期：' + data.result.future.day_20171010.date + '</li>';
+                        str += '<li>星期：' + data.result.future.day_20171010.week + '</li>';
+                        str += '<li>温度：' + data.result.future.day_20171010.temperature + '</li>';
+                        str += '<li>天气：' + data.result.future.day_20171010.weather + '</li>';
+                        str += '<li>风向：' + data.result.future.day_20171010.wind + '</li></ul>';
+                        $('.weather').html(str);
+//                        var list=$('.weather ul');
+//                        for (var i = 0; i < list.length; i++) {
+//                        $('.weather ul:eq(0) li').eq(0).siblings().css({'fontSize': '12px', 'color': '#333333'});
+//                        $('.weather ul:eq(1) li').eq(0).siblings().css({'fontSize': '12px', 'color': '#333333'});
+//                        $('.weather ul:eq(2) li').eq(0).siblings().css({'fontSize': '12px', 'color': '#333333'});
+//                        }
+                        if (data.result.today.weather_id.fa == '00'||data.result.today.weather_id.fb == '00') {
+                            $('.box').addClass('weather1');
+                        } else if (data.result.today.weather_id.fa == '01'||data.result.today.weather_id.fb == '01') {
+                            $('.box').addClass('weather2');
+                        } else if (data.result.today.weather_id.fa == '07'||data.result.today.weather_id.fb == '07') {
+                            $('.box').addClass('weather3');
+                        }
+                    } else {
+                        $('.weather').html('<h3>暂无该城市相关数据</h3>');
+                    }
+
+                },
+                error: function () {
+                    alert('请求失败')
+                }
+
+            })
+        });
+
+
+    })
+</script>
+</html>
