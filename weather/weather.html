@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head lang="en">
     <meta charset="UTF-8">
@@ -53,25 +53,25 @@
             padding-left: 20px;
             height: 30px;
             line-height: 30px;
-            background-color: #626fff;
+            background-color: rgba(98,111,255,0.5);
         }
 
         .weather1 {
-            background: url("images/weather/1.jpg") no-repeat;
+            background: url("images/weather-img/1.jpg") no-repeat;
             background-size: 100% 100%;
-            color: white;
+            color: black;
         }
 
         .weather2 {
-            background: url("images/weather/2.jpg") no-repeat;
+            background: url("images/weather-img/2.jpg") no-repeat;
             background-size: 100% 100%;
-            color: white;
+            color: black;
         }
 
         .weather3 {
-            background: url("images/weather/3.gif") no-repeat;
+            background: url("images/weather-img/3.gif") no-repeat;
             background-size: 100% 100%;
-            color: white;
+            color: black;
         }
     </style>
 
@@ -118,11 +118,11 @@
 <script>
     $(function () {
 
-//        var list=$('.weather ul');
+//        var list=$('.weather-img ul');
 //        for (var i = 0; i < list.length; i++) {
-//        $('.weather ul:eq(0) li').eq(0).siblings().css({'fontSize': '12px', 'color': '#333333'});
-//        $('.weather ul:eq(1) li').eq(0).siblings().css({'fontSize': '12px', 'color': '#333333'});
-//        $('.weather ul:eq(2) li').eq(0).siblings().css({'fontSize': '12px', 'color': '#333333'});
+//        $('.weather-img ul:eq(0) li').eq(0).siblings().css({'fontSize': '12px', 'color': '#333333'});
+//        $('.weather-img ul:eq(1) li').eq(0).siblings().css({'fontSize': '12px', 'color': '#333333'});
+//        $('.weather-img ul:eq(2) li').eq(0).siblings().css({'fontSize': '12px', 'color': '#333333'});
 //        }
 
         $('button').on('click', function () {
@@ -160,12 +160,18 @@
                         str += '<li>风向：' + data.result.today.wind + '</li>';
                         str += '<li>体感：' + data.result.today.dressing_index + '</li></ul>';
 
+//                        str += '<ul><li>明日天气</li>';
+//                        str += '<li>日期：' + data.result.future.day_20171010.date + '</li>';
+//                        str += '<li>星期：' + data.result.future.day_20171010.week + '</li>';
+//                        str += '<li>温度：' + data.result.future.day_20171010.temperature + '</li>';
+//                        str += '<li>天气：' + data.result.future.day_20171010.weather + '</li>';
+//                        str += '<li>风向：' + data.result.future.day_20171010.wind + '</li></ul>';
                         $('.weather').html(str);
-//                        var list=$('.weather ul');
+//                        var list=$('.weather-img ul');
 //                        for (var i = 0; i < list.length; i++) {
-//                        $('.weather ul:eq(0) li').eq(0).siblings().css({'fontSize': '12px', 'color': '#333333'});
-//                        $('.weather ul:eq(1) li').eq(0).siblings().css({'fontSize': '12px', 'color': '#333333'});
-//                        $('.weather ul:eq(2) li').eq(0).siblings().css({'fontSize': '12px', 'color': '#333333'});
+//                        $('.weather-img ul:eq(0) li').eq(0).siblings().css({'fontSize': '12px', 'color': '#333333'});
+//                        $('.weather-img ul:eq(1) li').eq(0).siblings().css({'fontSize': '12px', 'color': '#333333'});
+//                        $('.weather-img ul:eq(2) li').eq(0).siblings().css({'fontSize': '12px', 'color': '#333333'});
 //                        }
                         if (data.result.today.weather_id.fa == '00'||data.result.today.weather_id.fb == '00') {
                             $('.box').addClass('weather1');
