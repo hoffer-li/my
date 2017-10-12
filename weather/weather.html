@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head lang="en">
     <meta charset="UTF-8">
@@ -160,12 +160,6 @@
                         str += '<li>风向：' + data.result.today.wind + '</li>';
                         str += '<li>体感：' + data.result.today.dressing_index + '</li></ul>';
 
-                        str += '<ul><li>明日天气</li>';
-                        str += '<li>日期：' + data.result.future.day_20171010.date + '</li>';
-                        str += '<li>星期：' + data.result.future.day_20171010.week + '</li>';
-                        str += '<li>温度：' + data.result.future.day_20171010.temperature + '</li>';
-                        str += '<li>天气：' + data.result.future.day_20171010.weather + '</li>';
-                        str += '<li>风向：' + data.result.future.day_20171010.wind + '</li></ul>';
                         $('.weather').html(str);
 //                        var list=$('.weather ul');
 //                        for (var i = 0; i < list.length; i++) {
