@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>音频播放器</title>
+
+    <link rel="stylesheet" href="audio.css"/>
+</head>
+<body>
+<audio></audio>
+<div class="box">
+    <div class="background"></div>
+    <header>
+        <div class="top">
+            <img src="audioImg/mylogo.png" alt="mylogo" class="logo"/>
+
+            <div class="search">
+                <input type="text" placeholder="搜一下你想听的"/>
+                <i></i>
+            </div>
+        </div>
+    </header>
+    <nav>
+        <div class="middle">
+            <div class="left">
+                <ul>
+                    <li><i></i>正在播放</li>
+                    <li><i></i>播放历史</li>
+                    <li><i></i>我收藏的单曲</li>
+                </ul>
+                <div class="qrcode">
+                    <img src="audioImg/mmqrcode1508220110438.png" alt="二维码"/>
+
+                    <p>扫码关注 <br/>阿李社区</p>
+                </div>
+            </div>
+            <div class="center">
+                <ul>
+                    <li>歌曲</li>
+                    <li>演唱者</li>
+                    <li>专辑</li>
+                </ul>
+                <ul>
+                    <li>
+                        <ul>
+                            <li>无人之境</li>
+                            <li>陈奕迅</li>
+                            <li>Time Flies</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul>
+                            <li>陀飞轮</li>
+                            <li>陈奕迅</li>
+                            <li>Time Flies</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul>
+                            <li>一丝不挂</li>
+                            <li>陈奕迅</li>
+                            <li>Time Flies</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="right">
+                <div class="cover"></div>
+                <div class="lyric">
+
+                </div>
+            </div>
+        </div>
+    </nav>
+    <footer>
+        <div class="left_play">
+            <i></i>
+            <i class="play_pause"></i>
+            <i></i>
+
+            <div class="playMode"></div>
+            <ul class="playmode_list">
+                <li data-status='false'><i></i>随机播放</li>
+                <li data-status='true'><i></i>顺序播放</li>
+                <li data-status='false'><i></i>单曲循环</li>
+                <li></li>
+            </ul>
+        </div>
+        <div class="center_play">
+            <p></p>
+
+            <div class="progress">
+                <div class="time_position">00:00</div>
+                <div class="progress_bar">
+                    <div class="progress_bar2"></div>
+                    <div class="progress_button"></div>
+                </div>
+                <div class="bar">
+
+                </div>
+                <div class="time_duration"></div>
+                <div></div>
+            </div>
+        </div>
+        <div class="right_voice">
+            <div class="voice_icon"></div>
+            <div class="voice_bar">
+                <div class="voice_button"></div>
+                <div class="voice_bar2"></div>
+            </div>
+        </div>
+
+    </footer>
+</div>
+</body>
+<!--<script src="https://cdn.bootcss.com/jquery/1.12.3/jquery.js"></script>-->
+<script>
+    //动态添加
+    var data = [
+        {
+            url: 'http://fs.w.kugou.com/201710220753/ddfb555623d7c9c1836a497a65246e34/G009/M03/03/05/SQ0DAFUPLFuAQsbcAERM0Pk79Yk398.mp3',
+            singer: '陈奕迅',
+            song: '陀飞轮',
+            album: 'Time Flies',
+            cover: 'https://y.gtimg.cn/music/photo_new/T002R300x300M000001sjRhH0wqa4Q.jpg?max_age=2592000',
+            lyric: '陀飞轮 - 陈奕迅 <br/>过去十八岁 没戴表 不过有时间<br/>够我 没有后顾 野性贪玩<br/>霎眼廿七岁 时日无多 方不敢偷惰<br/>宏愿纵未了 奋斗总不太晚<br/>然后突然今秋<br/>望望身边 应该有已尽有<br/>我的美酒 跑车 相机 金表 也 讲究<br/>直到世间 个个也妒忌 仍不怎么富有<br/>用我尚有 换我没有 其实已 用尽所拥有<br/>曾付出 几多心跳<br/>来换取 一堆堆的发票<br/>人值得 命中减少几秒 多买一只表<br/>秒速 捉得紧了<br/>而皮肤竟偷偷松了<br/>为何用到尽了 至知哪样紧要<br/>劳力是 无止境<br/>活着多好 不需要 靠物证<br/>也不以高薪高职 高级品 搏尊敬 wo~<br/>就算搏到 伯爵那地位 和萧邦的隽永<br/>卖了任性 日拼夜拼 忘掉了为甚么高兴<br/>曾付出 几多心跳<br/>来换取 一堆堆 的发票<br/>人值得 命中减少几秒 多买一只表<br/>秒速 捉得紧了<br/>而皮肤竟偷偷松了<br/>为何用到尽了 至知哪样紧要<br/>记住那 关於光阴的教训<br/>回头走 天已暗<br/>你献出了十吋时和分<br/>可有换到十吋金<br/>还剩低 几多心跳<br/>人面跟 水晶表面对照<br/>连自己 亦都分析不了 得到多与少<br/>也许 真的疯了<br/>那个倒影 多么可笑<br/>灵魂若变卖了 上链也没心跳<br/>银或金 都不紧要<br/>谁造机芯 一样了<br/>计划了 照做了 得到了 时间却太少 no~<br/>还剩低 几多心跳<br/>还在数 赶不及了<br/>昂贵是这刻我觉悟了<br/>在时计里 看破一生 渺渺'
+        }, {
+            url: 'http://fs.w.kugou.com/201710230825/3cb117f022e076fabf4179f1a9612139/G014/M0A/01/1D/roYBAFUJphSAFBl9ADb94m4jLU0506.mp3',
+            singer: '陈奕迅',
+            song: '无人之境',
+            album: 'Time Flies',
+            cover: 'https://y.gtimg.cn/music/photo_new/T002R300x300M000001sjRhH0wqa4Q.jpg?max_age=2592000',
+            lyric: '1'
+        }, {
+            url: 'http://fs.w.kugou.com/201710230828/3c81222e070eee679e35ce934a026634/G019/M01/14/09/s4YBAFVXRgiAAr89ADoJT_Xlt4o085.mp3',
+            singer: '陈奕迅',
+            song: '一丝不挂',
+            album: 'Time Flies',
+            cover: 'https://y.gtimg.cn/music/photo_new/T002R300x300M000001sjRhH0wqa4Q.jpg?max_age=2592000',
+            lyric: '1'
+        }, {
+            url: 'http://fs.w.kugou.com/201710230805/b6d8931534bce95e4a3f20f396c89c4e/G110/M0B/1B/18/rg0DAFm7sViAOEMIAElWs9mJ7is815.mp3',
+            singer: '周深/郭沁',
+            song: '大鱼',
+            album: '大鱼',
+            cover: 'https://y.gtimg.cn/music/photo_new/T002R300x300M000004Y7V4s3ug4cC.jpg?max_age=2592000',
+            lyric: '1'
+        }
+    ];
+    //获取元素
+    var body = document.querySelector('body');
+    var background = document.querySelector('.background');
+    var songInfo = document.querySelector('.center_play p');
+    var audio = document.querySelector('audio');
+    var play = document.querySelectorAll('.left_play i');
+    var cover = document.querySelector('.cover');
+    var progressBar = document.querySelector('.progress_bar');
+    var progressBar2 = document.querySelector('.progress_bar2');
+    var progressButton = document.querySelector('.progress_button');
+    var timePosition = document.querySelector('.time_position');
+    var timeDuration = document.querySelector('.time_duration');
+    var voiceButton = document.querySelector('.voice_button');
+    var voiceBar2 = document.querySelector('.voice_bar2');
+    var voiceBar = document.querySelector('.voice_bar');
+    var voiceIcon = document.querySelector('.voice_icon');
+    var playMode = document.querySelector('.playMode');
+    var playmodeList = document.querySelector('.playmode_list');
+    var playmodeLi = document.querySelectorAll('.playmode_list li');
+
+
+    var index = 0;
+    function init() {
+        //    添加歌曲名字
+        songInfo.innerHTML = data[index].song + '---' + data[index].singer;
+        //    添加专辑封面
+
+        background.style.background = 'url("' + data[index].cover + '")';
+        background.style.backgroundSize = 'cover';
+        body.style.background = 'url("' + data[index].cover + '")';
+        body.style.backgroundSize = 'cover';
+        cover.style.background = 'url("' + data[index].cover + '")';
+        cover.style.backgroundSize = 'cover';
+
+        //    添加开始播放
+        audio.src = data[index].url;
+    }
+    init();
+    //    播放控制
+    var deg = 0;
+    var timer = null;
+    function playMusic() {
+        audio.play();
+        //            专辑封面旋转函数
+        clearInterval(timer);
+        timer = setInterval(function () {
+            deg++;
+            cover.style.transform = 'rotate(' + deg + 'deg)';
+        }, 30);
+        play[1].style.backgroundPositionY = '-30px';
+    }
+    //    暂停控制
+    function pauseMusic() {
+        audio.pause();
+        play[1].style.backgroundPositionY = '0';
+        clearInterval(timer);
+    }
+
+    //    播放模式
+    //    控制模式列表的显示与隐藏
+    playMode.addEventListener('click', function () {
+        if (playmodeList.style.display != 'block') {
+            playmodeList.style.display = 'block';
+        } else {
+            playmodeList.style.display = 'none';
+        }
+    });
+    //    ev.srcElement 获取当前事件作用的对象
+    document.addEventListener('click', function (e) {
+        var ev = e || window.e;
+        var aim = ev.srcElement || ev.target;
+        if (aim.className != 'playMode') {
+            playmodeList.style.display = 'none';
+        }
+    });
+
+    //    检测当前是哪种播放状态
+    function chickStatus() {
+        for (var q = 0; q < playmodeLi.length; q++) {
+            if (playmodeLi[q].dataset.status === 'true') {
+                return q;
+            }
+        }
+    }
+    //点击切换不同播放模式
+    for (var p = 0; p < playmodeLi.length - 1; p++) {
+        playmodeLi[p].index = p;
+        playmodeLi[p].addEventListener('click', function () {
+            var dian = this.index;
+            //    随机
+            if (dian == 0) {
+                playMode.style.backgroundPositionY = '-216px';
+            } else if (dian == 1) {
+//                顺序
+                playMode.style.backgroundPositionY = '-176px';
+            } else if (dian == 2) {
+//                单曲
+                playMode.style.backgroundPositionY = '-197px';
+            }
+
+            for (var j = 0; j < playmodeLi.length - 1; j++) {
+//                自定义属性的值先统一修改为false
+                playmodeLi[j].dataset.status = 'false';
+            }
+            this.dataset.status = 'true';
+
+
+        })
+    }
+
+    //    播放/暂停控制
+    play[1].addEventListener('click', function () {
+        if (audio.paused) {
+            playMusic();
+        } else {
+            pauseMusic()
+        }
+    });
+    //点击空格控制播放/暂停
+    document.addEventListener('keydown', function (e) {
+        if (e.keyCode === 32) {
+            if (audio.paused) {
+                playMusic();
+            } else {
+                pauseMusic()
+            }
+//            方向键控制播放/暂停，声音大小
+        } else if (e.keyCode === 37) {
+            npMusic(false);
+        } else if (e.keyCode === 39) {
+            npMusic(true);
+        } else if (e.keyCode === 38) {
+            audio.volume = audio.volume > 0.9 ? 1 : audio.volume += 0.1;
+            voiceBar2.style.width = audio.volume * 150 + 'px';
+            voiceButton.style.left = (audio.volume * 150 - 5) + 'px';
+        } else if (e.keyCode === 40) {
+            audio.volume = audio.volume < 0.1 ? 0 : audio.volume -= 0.1;
+            voiceBar2.style.width = audio.volume * 150 + 'px';
+            voiceButton.style.left = (audio.volume * 150 - 5) + 'px';
+        }
+    });
+    //上一曲/下一曲函数
+    var chicked = false;
+    function npMusic(flag) {
+//        随机
+        if (chickStatus() === 0) {
+            index = parseInt(Math.random() * data.length);
+//            顺序
+        } else if (chickStatus() === 1) {
+//            flag判断为true index++ 否则index--
+//            默认判断为true时，flag==true简写为flag
+            flag ? index++ : index--;
+            index = index < 0 ? index = data.length - 1 : index;
+            index = index > data.length - 1 ? index = 0 : index;
+        } else if (chickStatus() === 2) {
+//          单曲循环
+            if (chicked == true) {
+                flag ? index++ : index--;
+                index = index < 0 ? index = data.length - 1 : index;
+                index = index > data.length - 1 ? index = 0 : index;
+            }
+            chicked = false;
+        }
+
+        deg = 0;
+        init(index);
+        playMusic();
+
+    }
+    //    上一曲
+    play[0].addEventListener('click', function () {
+        chicked = true;
+        npMusic(false);
+    });
+    //    下一曲
+    play[2].addEventListener('click', function () {
+        chicked = true;
+        npMusic(true);
+    });
+    //    十位以内时间添加0函数
+    function filterTime(m) {
+        return m > 10 ? m : '0' + m;
+    }
+
+    //    获取播放总时长/当前播放时长函数
+    function getTime(time, flag) {
+        var minute = Math.floor(time / 60);
+        var sec = Math.floor(time % 60);
+        if (flag) {
+            var sumTime = filterTime(minute) + ':' + filterTime(sec);
+            timeDuration.innerHTML = sumTime;
+        } else {
+            var nowTime = filterTime(minute) + ':' + filterTime(sec);
+            timePosition.innerHTML = nowTime;
+        }
+    }
+
+    //        音量控制
+
+    voiceBar.addEventListener('click', function (e) {
+        audio.volume = e.offsetX / 150;
+        voiceBar2.style.width = e.offsetX + 'px';
+        voiceButton.style.left = (e.offsetX - 5) + 'px';
+    });
+    voiceBar2.style.width = audio.volume * 150 + 'px';
+    voiceButton.style.left = (audio.volume * 150 - 5) + 'px';
+    voiceIcon.addEventListener('click', function (e) {
+        if (audio.muted != true) {
+            audio.muted = true;
+            voiceIcon.style.backgroundPositionY = '-313px';
+        } else {
+            audio.muted = false;
+            voiceIcon.style.backgroundPositionY = '-295px';
+        }
+    });
+
+    //    添加播放准备事件
+    audio.addEventListener('canplay', function () {
+        //        获取播放总时长
+        getTime(audio.duration, true);
+
+        //    获取当前播放时长
+        audio.addEventListener('timeupdate', function () {
+            getTime(audio.currentTime, false);
+            //        进度条
+            var nowProgress = audio.currentTime / audio.duration * 800;
+            progressBar2.style.width = nowProgress + 'px';
+            //        控制球
+            progressButton.style.left = (nowProgress - 8) + 'px';
+            //播放完毕自动下一曲
+            if (audio.ended) {
+                npMusic(true);
+            }
+        });
+        progressButton.addEventListener('click', function (e) {
+            e.stopPropagation();
+        });
+        //    点击进度条快进
+        progressBar.addEventListener('click', function (e) {
+            var e = e || window.e;
+            var posTime = e.offsetX / 800 * audio.duration;
+            progressBar2.style.width = e.offsetX + 'px';
+            progressButton.style.left = e.offsetX + 'px';
+            audio.currentTime = posTime;
+            playMusic();
+            console.log(e.offsetX);
+        });
+
+//        拖动鼠标快进
+
+    });
+
+</script>
+</html>
