@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0"/>
+    <title>音乐播放器-手机版</title>
+    <link href="https://cdn.bootcss.com/jquery-mobile/1.4.5/jquery.mobile.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<style>
+    .header > .carousel-inner > img {
+        width: 100%;
+    }
+
+    #playing > .header > .cover {
+        background: url("https://y.gtimg.cn/music/photo_new/T002R300x300M000001opgPk2XWJy2.jpg?max_age=2592000") no-repeat;
+        background-size: cover;
+        width: 100%;
+        height: 200px;
+    }
+
+    .playModel li {
+        float: left;
+    }
+</style>
+<body>
+<audio id="audio"></audio>
+<div data-role="page" id="recommend" data-theme="b">
+    <div data-role="header">
+        <div class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+                <div class="item active" id="img1" data-next="img2" data-prev="img4">
+                    <a href="#playing"><img src="images/slider1.jpg" alt=""></a>
+                </div>
+                <div class="item" id="img2" data-next="img3" data-prev="img1">
+                    <a href="#playing"><img src="images/slider2.jpg" alt=""></a>
+                </div>
+                <div class="item" id="img3" data-next="img4" data-prev="img2">
+                    <a href="#playing"><img src="images/slider3.jpg" alt=""></a>
+                </div>
+                <div class="item" id="img4" data-next="img1" data-prev="img3">
+                    <a href="#playing"><img src="images/slider4.jpg" alt=""></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div data-role="content">
+        <ul data-role="listview" data-inset="true">
+            <li>
+                <a href="#">
+                    <h2>猎场电视原声带</h2>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <h2>暴力美学：用重金属演绎的古典乐名曲</h2>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <h2>50位欧美Diva霸气开嗓：做自己的女王</h2>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <h2>2017年MTV EMA音乐颁奖典礼获奖名单</h2>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <h2>个性化推荐</h2>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div data-role="footer" data-position="fixed">
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#recommend">推荐</a></li>
+                <li><a href="#singer" data-transition="pop">歌手</a></li>
+                <li><a href="#special" data-transition="pop">专辑</a></li>
+                <li><a href="#playing">歌曲</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div data-role="page" id="singer" data-theme="b">
+    <div data-role="header" data-position="fixed">
+        <a href="#recommend" data-role="button" data-transition="slide">返回</a>
+
+        <h2>歌手列表</h2>
+    </div>
+    <div data-role="content">
+        <ul data-role="listview" data-inset="true">
+            <li>
+                <a href="#">
+                    <img src="https://y.gtimg.cn/music/photo_new/T001R150x150M000003Nz2So3XXYek.jpg?max_age=2592000">
+
+                    <h2>陈奕迅</h2>
+
+                    <p>陈奕迅，香港实力派歌手</p>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="https://y.gtimg.cn/music/photo_new/T001R150x150M0000025NhlN2yWrP4.jpg?max_age=2592000">
+
+                    <h2>周杰伦</h2>
+
+                    <p>周杰伦，华语音乐人</p>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="https://y.gtimg.cn/music/photo_new/T001R150x150M000003Cn3Yh16q1MO.jpg?max_age=2592000">
+
+                    <h2>庄心妍</h2>
+
+                    <p>庄心妍，大陆女歌手</p>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="https://y.gtimg.cn/music/photo_new/T001R150x150M000002azErJ0UcDN6.jpg?max_age=2592000">
+
+                    <h2>张杰</h2>
+
+                    <p>张杰，大陆男歌手</p>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="https://y.gtimg.cn/music/photo_new/T001R150x150M000004Be55m1SJaLk.jpg?max_age=2592000">
+
+                    <h2>张学友</h2>
+
+                    <p>张学友，中国香港男歌手、演员</p>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="https://y.gtimg.cn/music/photo_new/T001R150x150M0000003ZpE43ypssl.jpg?max_age=2592000">
+
+                    <h2>张碧晨</h2>
+
+                    <p>张碧晨，华语流行女歌手</p>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="https://y.gtimg.cn/music/photo_new/T001R150x150M0000044wQXL0ElWF1.jpg?max_age=2592000">
+
+                    <h2>张宇</h2>
+
+                    <p>张宇，华语男歌手、音乐创作人、主持人</p>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="https://y.gtimg.cn/music/photo_new/T001R150x150M000000aw4WC2EQYTv.jpg?max_age=2592000">
+
+                    <h2>张靓颖</h2>
+
+                    <p>张靓颖，中国流行女歌手</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div data-role="page" id="special" data-theme="b">
+    <div data-role="header" data-position="fixed">
+        <a href="#recommend" data-role="button" data-transition="slide">返回</a>
+
+        <h2>最新专辑</h2>
+    </div>
+    <div data-role="content">
+        <ul data-role="listview" data-inset="true">
+            <li>
+                <a href="#">
+                    <img src="https://y.gtimg.cn/music/photo_new/T002R300x300M000001opgPk2XWJy2.jpg?max_age=2592000">
+
+                    <h2>放 (Budweiser EDM Remix)</h2>
+
+                    <p>陈奕迅</p>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="https://y.gtimg.cn/music/photo_new/T002R300x300M000001te2Nz0KuJMz.jpg?max_age=2592000">
+
+                    <h2>城市之光</h2>
+
+                    <p>李建</p>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="https://y.gtimg.cn/music/photo_new/T002R300x300M000003pE4He2Mk0u6.jpg?max_age=2592000">
+
+                    <h2>C'mon in~~</h2>
+
+                    <p>陈奕迅</p>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="https://y.gtimg.cn/music/photo_new/T002R300x300M0000047BVR51KWpt2.jpg?max_age=2592000">
+
+                    <h2>BIGBANG10 THE CONCERT</h2>
+
+                    <p>BIGBANG</p>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="https://y.gtimg.cn/music/photo_new/T002R300x300M000004MFDGO0f2jVn.jpg?max_age=2592000">
+
+                    <h2>骆驼</h2>
+
+                    <p>薛之谦</p>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="https://y.gtimg.cn/music/photo_new/T002R300x300M000004Lc40p00Xze9.jpg?max_age=2592000">
+
+                    <h2>我们的时光</h2>
+
+                    <p>TFBOYS</p>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="https://y.gtimg.cn/music/photo_new/T002R300x300M000003RMaRI1iFoYd.jpg?max_age=2592000">
+
+                    <h2>周杰伦的床边故事</h2>
+
+                    <p>周杰伦</p>
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    <img src="https://y.gtimg.cn/music/photo_new/T002R300x300M000000YGZge12vRwH.jpg?max_age=2592000">
+
+                    <h2>心之焰</h2>
+
+                    <p>邓紫棋</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div data-role="page" id="playing" data-theme="b">
+    <div class="header" data-role="header" data-position="fixed">
+        <a href="#recommend" data-role="button" data-transition="slide">返回</a>
+
+        <h2>歌曲列表</h2>
+
+        <div class="cover" data-role="navbar"></div>
+    </div>
+    <div class="content" data-role="content">
+        <div class="ui-grid-a">
+            <div class="ui-block-a"><h3>正在播放:</h3></div>
+            <div class="ui-block-b"><h3><span class="nowMusic"></span></h3></div>
+
+        </div>
+        <ul class="listview" data-role="listview" data-inset="true">
+
+        </ul>
+    </div>
+    <div class="footer" data-role="footer" data-position="fixed">
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#" id="prevMusic">上一首</a></li>
+                <li><a href="#" id="musicControl">暂停</a></li>
+                <li><a href="#" id="nextMusic">下一首</a></li>
+                <li><a href="#" id="playModel">
+                    <ul class="playModel">
+                        <li data-model="false">随机播放</li>
+                        <li data-model="true">顺序播放</li>
+                        <li data-model="false">单曲循环</li>
+                    </ul>
+                </a></li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+</body>
+<script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery-mobile/1.4.5/jquery.mobile.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+    //动态添加
+    var data = [
+        {
+            url: 'http://fs.w.kugou.com/201711192203/3b2777951aead54d51ea8cd5df892041/G009/M03/03/05/SQ0DAFUPLFuAQsbcAERM0Pk79Yk398.mp3',
+            singer: '陈奕迅',
+            song: '陀飞轮',
+            album: 'Time Flies',
+            cover: 'https://y.gtimg.cn/music/photo_new/T002R300x300M000001sjRhH0wqa4Q.jpg?max_age=2592000',
+            lyric: '陀飞轮 - 陈奕迅 <br/>过去十八岁 没戴表 不过有时间<br/>够我 没有后顾 野性贪玩<br/>霎眼廿七岁 时日无多 方不敢偷惰<br/>宏愿纵未了 奋斗总不太晚<br/>然后突然今秋<br/>望望身边 应该有已尽有<br/>我的美酒 跑车 相机 金表 也 讲究<br/>直到世间 个个也妒忌 仍不怎么富有<br/>用我尚有 换我没有 其实已 用尽所拥有<br/>曾付出 几多心跳<br/>来换取 一堆堆的发票<br/>人值得 命中减少几秒 多买一只表<br/>秒速 捉得紧了<br/>而皮肤竟偷偷松了<br/>为何用到尽了 至知哪样紧要<br/>劳力是 无止境<br/>活着多好 不需要 靠物证<br/>也不以高薪高职 高级品 搏尊敬 wo~<br/>就算搏到 伯爵那地位 和萧邦的隽永<br/>卖了任性 日拼夜拼 忘掉了为甚么高兴<br/>曾付出 几多心跳<br/>来换取 一堆堆 的发票<br/>人值得 命中减少几秒 多买一只表<br/>秒速 捉得紧了<br/>而皮肤竟偷偷松了<br/>为何用到尽了 至知哪样紧要<br/>记住那 关於光阴的教训<br/>回头走 天已暗<br/>你献出了十吋时和分<br/>可有换到十吋金<br/>还剩低 几多心跳<br/>人面跟 水晶表面对照<br/>连自己 亦都分析不了 得到多与少<br/>也许 真的疯了<br/>那个倒影 多么可笑<br/>灵魂若变卖了 上链也没心跳<br/>银或金 都不紧要<br/>谁造机芯 一样了<br/>计划了 照做了 得到了 时间却太少 no~<br/>还剩低 几多心跳<br/>还在数 赶不及了<br/>昂贵是这刻我觉悟了<br/>在时计里 看破一生 渺渺'
+        }, {
+            url: 'http://fs.w.kugou.com/201711192042/ae457c373a51e64ec581f46a75f3e08f/G014/M0A/01/1D/roYBAFUJphSAFBl9ADb94m4jLU0506.mp3',
+            singer: '陈奕迅',
+            song: '无人之境',
+            album: 'Time Flies',
+            cover: 'https://y.gtimg.cn/music/photo_new/T002R300x300M000001sjRhH0wqa4Q.jpg?max_age=2592000',
+            lyric: '1'
+        }, {
+            url: 'http://fs.w.kugou.com/201711192003/f174923bb308ec03f2d4246724bf1909/G019/M01/14/09/s4YBAFVXRgiAAr89ADoJT_Xlt4o085.mp3',
+            singer: '陈奕迅',
+            song: '一丝不挂',
+            album: 'Time Flies',
+            cover: 'https://y.gtimg.cn/music/photo_new/T002R300x300M000001sjRhH0wqa4Q.jpg?max_age=2592000',
+            lyric: '1'
+        }, {
+            url: 'http://fs.w.kugou.com/201711192055/6d0851715a14a53563be5fa9ef4411dd/G110/M0B/1B/18/rg0DAFm7sViAOEMIAElWs9mJ7is815.mp3',
+            singer: '周深/郭沁',
+            song: '大鱼',
+            album: '大鱼',
+            cover: 'https://y.gtimg.cn/music/photo_new/T002R300x300M000004Y7V4s3ug4cC.jpg?max_age=2592000',
+            lyric: '1'
+        }
+    ];
+    //    console.log(data.length);
+
+    for (var i = 0; i < data.length; i++) {
+        var str = '';
+        str += ' <li><a href="#"><h2>' + data[i].song + '</h2>';
+        str += '<p>' + data[i].singer + '</p></a></li>';
+        $('#playing>.content>.listview').append(str);
+    }
+    var audio = document.querySelector('#audio');
+    var nowMusic = document.querySelector('.nowMusic');
+    var cover = document.querySelector('.cover');
+    var musicControl = document.querySelector('#musicControl');
+    var prevMusic = document.querySelector('#prevMusic');
+    var nextMusic = document.querySelector('#nextMusic');
+    var musicList = $('.listview li');
+    var playModel = $('#playModel');
+    var $playmodelLi = $('.playModel li');
+
+
+    var index = 0;
+    function init() {
+        //    添加歌曲名字
+        nowMusic.innerHTML = data[index].song;
+        //    添加专辑封面
+
+        cover.style.background = 'url("' + data[index].cover + '") no-repeat';
+        cover.style.backgroundSize = 'cover';
+
+        //    添加开始播放
+        audio.src = data[index].url;
+    }
+    init();
+
+
+    function playMusic() {
+        audio.play();
+        musicControl.innerHTML = ('播放');
+    }
+    function pauseMusic() {
+        audio.pause();
+        musicControl.innerHTML = ('暂停');
+    }
+
+    //    点击歌曲列表播放
+    musicList.on('click', function () {
+        index = $(this).index();
+        init(index);
+        playMusic();
+//        console.log(index)
+    });
+    //    点击控制播放/暂停
+    musicControl.addEventListener('click', function () {
+        if (audio.paused) {
+            playMusic();
+
+        } else {
+            pauseMusic();
+
+        }
+    });
+
+    //    检测当前是哪种播放状态
+    $playmodelLi.hide();
+    function checkmodel() {
+        for (var i = 0; i < $playmodelLi.length; i++) {
+            if ($playmodelLi[i].dataset.model === 'true') {
+                $playmodelLi.eq(i).show().siblings().hide();
+                return i;
+            }
+        }
+    }
+    checkmodel();
+    //点击空格控制播放/暂停
+    document.addEventListener('keydown', function (e) {
+        if (e.keyCode === 32) {
+            if (audio.paused) {
+                playMusic();
+                musicControl.innerHTML = ('播放');
+            } else {
+                pauseMusic();
+                musicControl.innerHTML = ('暂停');
+            }
+//            方向键控制上一曲/下一曲，声音大小
+        } else if (e.keyCode === 37) {
+            npMusic(false);
+        } else if (e.keyCode === 39) {
+            npMusic(true);
+        } else if (e.keyCode === 38) {
+            audio.volume = audio.volume > 0.9 ? 1 : audio.volume += 0.1;
+        } else if (e.keyCode === 40) {
+            audio.volume = audio.volume < 0.1 ? 0 : audio.volume -= 0.1;
+        }
+    });
+
+    //    上一曲
+    prevMusic.addEventListener('click', function () {
+        npMusic(false);
+
+    });
+    //    console.log(index);
+    //    下一曲
+    nextMusic.addEventListener('click', function () {
+        npMusic(true);
+    });
+    var modelNum = 1;
+
+    playModel.on('click', function () {
+        modelNum++;
+        modelNum = modelNum > 2 ? 0 : modelNum;
+        $playmodelLi.eq(modelNum).show().siblings().hide();
+        for (var i = 0; i < $playmodelLi.length; i++) {
+            $playmodelLi[i].dataset.model = 'false';
+        }
+//        $playmodelLi.eq(modelNum+1).dataset.model = 'true';
+        console.log(modelNum);
+    });
+
+    //上一曲/下一曲函数
+    var checked = false;
+    //    function npMusic(flag) {
+    ////        随机
+    //        if (checkmodel() === 0) {
+    //            index = parseInt(Math.random() * data.length);
+    ////            顺序
+    //        } else if (checkmodel() === 1) {
+    ////            flag判断为true index++ 否则index--
+    ////            默认判断为true时，flag==true简写为flag
+    //            flag ? index++ : index--;
+    //            index = index < 0 ? index = data.length - 1 : index;
+    //            index = index > data.length - 1 ? index = 0 : index;
+    //        } else if (checkmodel() === 2) {
+    ////          单曲循环
+    //            if (chicked == true) {
+    //                flag ? index++ : index--;
+    //                index = index < 0 ? index = data.length - 1 : index;
+    //                index = index > data.length - 1 ? index = 0 : index;
+    //            }
+    //            chicked = false;
+    //        }
+    //
+    //        deg = 0;
+    //        init(index);
+    //        playMusic();
+    //
+    //    }
+
+    //上一曲/下一曲函数
+    function npMusic(flag) {
+//            flag判断为true index++ 否则index--
+//            默认判断为true时，flag==true简写为flag
+        flag ? index++ : index--;
+        index = index < 0 ? index = data.length - 1 : index;
+        index = index > data.length - 1 ? index = 0 : index;
+        init(index);
+        playMusic();
+    }
+
+    //
+    //    $(document).on("swipeleft", ".item", function () {
+    //        var thePage = $(this),
+    //                next = thePage.jqmData("next");
+    //        if (next) {
+    //            $(":mobile-pagecontainer").pagecontainer("change", "#" + next, {transition: "slide"});
+    //            alert('左')
+    //        }
+    //    });
+    //    $(document).on("swiperight", ".item", function () {
+    //        var thePage = $(this),
+    //                prev = thePage.jqmData("prev");
+    //        if (prev) {
+    //            $(":mobile-pagecontainer").pagecontainer("change", "#" + prev, {transition: "slide", reverse: true});
+    //            alert('右')
+    //        }
+    //    });
+</script>
+</html>
